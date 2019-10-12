@@ -5,41 +5,37 @@
  */
 package brainfuckGraphics;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Eva Moniz
  */
 public enum BrainfuckInstruction {
-    SHIFT_LEFT("<"),
-    SHIFT_RIGHT(">"),
-    INCREMENT("+"),
-    DECREMENT("-"),
-    LOOP_BEGIN("["),
-    LOOP_END("]"),
-    INPUT(","),
-    OUTPUT("."),
-    NOTHING("");
+    SHIFT_LEFT('<'),
+    SHIFT_RIGHT('>'),
+    INCREMENT('+'),
+    DECREMENT('-'),
+    LOOP_BEGIN('['),
+    LOOP_END(']'),
+    INPUT(','),
+    OUTPUT('.');
 
-    private String stringValue;
+    private final char charValue;
 
-    private BrainfuckInstruction(String str) {
-        this.stringValue = str;
-    }
-
-    public static BrainfuckInstruction fromString(String string) {
+    public static BrainfuckInstruction fromChar(char ch) {
         for (var ins : values()) {
-            if (ins.toString().equals(string)) {
+            if (ins.charValue == ch) {
                 return ins;
             }
         }
-        return NOTHING;
+        return null;
     }
 
     @Override
     public String toString() {
-        return stringValue;
+        return Character.toString(this.charValue);
+    }
+
+    private BrainfuckInstruction(char ch) {
+        this.charValue = ch;
     }
 }
