@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class BrainfuckInterpreter {
     
     ArrayList<Byte> programMemory = new ArrayList<Byte>();
     Integer memoryPointer = 0;
-    String program;
+    Byte[] program;
+    Integer instructionPointer = 0;
+    Queue<Byte> inputBuffer;
     
-    public BrainfuckInterpreter(String bfstring){
+    public BrainfuckInterpreter(Byte[] bfstring){
         program = bfstring;
     }
 
@@ -22,11 +25,48 @@ public class BrainfuckInterpreter {
     public void decreaseMemoryPointer(){
         if (this.memoryPointer - 1 < 0){
             System.out.println("Some crash message");
-            exit(2)
+            System.exit(2);
         } else {
             memoryPointer--;
         }
     }
 
+    public void incrementMemcell(){
+        this.programMemory.set(this.memoryPointer.intValue(), this.programMemory.get(this.memoryPointer.intValue()) + Integer(1).byteValue());
+    }
+    
+    public void decrementMemcell(){
+        this.programMemory.set(this.memoryPointer.intValue(), this.programMemory.get(this.memoryPointer) - 1);
+    }
 
+    public void printMemCell(){
+        System.out.print((char)this.programMemory.get(this.memoryPointer));
+    }
+
+    public void exec(Integer instruction){
+        switch((char)this.program[instruction]){
+            case '>' :
+                increaseMemoryPointer();
+                break;
+            case '<' :
+                decreaseMemoryPointer();
+                break;
+            case '+' :
+                incrementMemcell();
+                break;
+            case '-' :
+                decrementMemcell();
+                break;
+            case '.':
+                printMemCell();
+                break;
+            case ',':
+                
+                break;
+        }
+    }
+
+    public static void main(String[] args){
+
+    }
 }
