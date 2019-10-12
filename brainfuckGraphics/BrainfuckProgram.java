@@ -19,6 +19,14 @@ public class BrainfuckProgram {
 
     public BrainfuckProgram(String code) {
         this.code = code;
-        this.matchingBrackets = new HashMap<>();
+        this.matchBrackets();
+    }
+
+    public BrainfuckInstruction getInstruction(int location) {
+        return null;
+    }
+
+    private void matchBrackets() {
+
     }
 }
