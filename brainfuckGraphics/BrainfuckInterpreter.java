@@ -1,6 +1,5 @@
 package brainfuckGraphics;
 
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Queue;
@@ -15,7 +14,7 @@ public class BrainfuckInterpreter {
     Scanner kb = new Scanner(System.in);
 
     public BrainfuckInterpreter(BrainfuckProgram bfp) {
-        this.bfp = BrainfuckProgram;
+        this.bfp = bfp;
     }
 
     public void increaseMemoryPointer() {
@@ -43,7 +42,7 @@ public class BrainfuckInterpreter {
     }
 
     public void decrementMemcell() {
-        this.programMemory.set(this.memoryPointer, (byte)(this.programMemory.get(this.memoryPointer) - 1));
+        this.programMemory.set(this.memoryPointer, (byte) (this.programMemory.get(this.memoryPointer) - 1));
     }
 
     public void printMemCell() {
@@ -51,9 +50,9 @@ public class BrainfuckInterpreter {
     }
 
     public void getUserInput() {
-        if (inputBuffer.isEmpty()){
+        if (inputBuffer.isEmpty()) {
             byte[] inputs = kb.nextLine().getBytes();
-            for (int i = 0; i < inputs.length; i++){
+            for (int i = 0; i < inputs.length; i++) {
                 inputBuffer.add(inputs[i]);
             }
         }
@@ -62,22 +61,22 @@ public class BrainfuckInterpreter {
 
     public void exec(Integer instruction) {
         switch (this.bfp.getInstruction(instructionPointer)) {
-            case BrainfuckInstruction.SHIFT_RIGHT:
+            case SHIFT_RIGHT:
                 increaseMemoryPointer();
                 break;
-            case BrainfuckInstruction.SHIFT_LEFT:
+            case SHIFT_LEFT:
                 decreaseMemoryPointer();
                 break;
-            case BrainfuckInstruction.INCREMENT:
+            case INCREMENT:
                 incrementMemcell();
                 break;
-            case BrainfuckInstruction.DECREMENT:
+            case DECREMENT:
                 decrementMemcell();
                 break;
-            case BrainfuckInstruction.OUTPUT:
+            case OUTPUT:
                 printMemCell();
                 break;
-            case BrainfuckInstruction.INPUT:
+            case INPUT:
                 getUserInput();
                 break;
         }
