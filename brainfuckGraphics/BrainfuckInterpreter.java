@@ -1,29 +1,31 @@
+package brainfuckGraphics;
+
 import java.util.ArrayList;
 import java.util.Queue;
 
 public class BrainfuckInterpreter {
-    
-    ArrayList<Byte> programMemory = new ArrayList<Byte>();
-    Integer memoryPointer = 0;
-    Byte[] program;
-    Integer instructionPointer = 0;
+
+    ArrayList<Byte> programMemory = new ArrayList<>();
+    int memoryPointer = 0;
+    byte[] program;
+    int instructionPointer = 0;
     Queue<Byte> inputBuffer;
-    
-    public BrainfuckInterpreter(Byte[] bfstring){
+
+    public BrainfuckInterpreter(byte[] bfstring) {
         program = bfstring;
     }
 
-    public void increaseMemoryPointer(){
+    public void increaseMemoryPointer() {
         this.memoryPointer++;
         try {
             this.programMemory.get(this.memoryPointer);
-        } catch (IndexOutOfBoundsException e){
-            this.programMemory.add((byte)0);
+        } catch (IndexOutOfBoundsException e) {
+            this.programMemory.add((byte) 0);
         }
     }
 
-    public void decreaseMemoryPointer(){
-        if (this.memoryPointer - 1 < 0){
+    public void decreaseMemoryPointer() {
+        if (this.memoryPointer - 1 < 0) {
             System.out.println("Some crash message");
             System.exit(2);
         } else {
@@ -31,42 +33,44 @@ public class BrainfuckInterpreter {
         }
     }
 
-    public void incrementMemcell(){
-        this.programMemory.set(this.memoryPointer.intValue(), this.programMemory.get(this.memoryPointer.intValue()) + Integer(1).byteValue());
+    public void incrementMemcell() {
+        byte currentVal = (byte) this.programMemory.get(this.memoryPointer);
+        currentVal++;
+        this.programMemory.set(this.memoryPointer, currentVal);
     }
-    
-    public void decrementMemcell(){
+
+    public void decrementMemcell() {
         this.programMemory.set(this.memoryPointer.intValue(), this.programMemory.get(this.memoryPointer) - 1);
     }
 
-    public void printMemCell(){
-        System.out.print((char)this.programMemory.get(this.memoryPointer));
+    public void printMemCell() {
+        System.out.print((char) this.programMemory.get(this.memoryPointer));
     }
 
-    public void exec(Integer instruction){
-        switch((char)this.program[instruction]){
-            case '>' :
+    public void exec(Integer instruction) {
+        switch ((char) this.program[instruction]) {
+            case '>':
                 increaseMemoryPointer();
                 break;
-            case '<' :
+            case '<':
                 decreaseMemoryPointer();
                 break;
-            case '+' :
+            case '+':
                 incrementMemcell();
                 break;
-            case '-' :
+            case '-':
                 decrementMemcell();
                 break;
             case '.':
                 printMemCell();
                 break;
             case ',':
-                
+
                 break;
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
     }
 }
