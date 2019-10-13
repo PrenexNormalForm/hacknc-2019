@@ -3,6 +3,7 @@ package brainfuckGraphics;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.LinkedList;
 
 public class BrainfuckInterpreter {
 
@@ -16,6 +17,7 @@ public class BrainfuckInterpreter {
     public BrainfuckInterpreter(BrainfuckProgram bfp) {
         this.programMemory.add((byte)0);
         this.bfp = bfp;
+        this.inputBuffer = new LinkedList<Byte>();
     }
 
     public void increaseMemoryPointer() {
@@ -51,7 +53,7 @@ public class BrainfuckInterpreter {
     }
 
     public void getUserInput() {
-        if (inputBuffer.isEmpty()) {
+        while (inputBuffer.isEmpty()) {
             byte[] inputs = kb.nextLine().getBytes();
             for (int i = 0; i < inputs.length; i++) {
                 inputBuffer.add(inputs[i]);
