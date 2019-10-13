@@ -29,6 +29,7 @@ public class Main {
         BrainfuckInterpreter interpreterObject = new BrainfuckInterpreter(programObject);
         BrainfuckController mainEngine = new BrainfuckController(interpreterObject);
         mainEngine.execute();
+        mainEngine.draw();
         System.out.println("done");
     }
 }

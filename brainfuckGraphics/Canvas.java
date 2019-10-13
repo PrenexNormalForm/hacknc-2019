@@ -22,8 +22,8 @@ public class Canvas extends JPanel {
     List<Consumer<Graphics>> paintList;
 
     //Constructor
-    public Canvas() {
-        this.paintList = new LinkedList<>();
+    public Canvas(List<Consumer<Graphics>> paintList) {
+        this.paintList = paintList;
 //		frame.setSize(width, height);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		frame.setLocationRelativeTo(null);

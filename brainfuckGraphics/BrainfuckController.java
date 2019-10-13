@@ -1,25 +1,20 @@
 package brainfuckGraphics;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.*;
 import java.util.function.Consumer;
 
 public class BrainfuckController {
 
     BrainfuckInterpreter engine;
-    JFrame jframe;
-    Canvas canvas;
+    List<Consumer<Graphics>> drawList;
 
     public BrainfuckController(BrainfuckInterpreter engine) {
         this.engine = engine;
-        this.jframe = new JFrame();
-        this.canvas = new Canvas();
-        this.jframe.setLayout(new BorderLayout());
-        this.jframe.add("Center", this.canvas);
-        this.jframe.setSize(800, 600);
-        this.jframe.setLocationRelativeTo(null);
-        this.jframe.setTitle("BrainFuck Draw");
-        this.jframe.setVisible(true);
+        this.drawList = new LinkedList<>();
     }
 
     public boolean step() {
@@ -32,7 +27,7 @@ public class BrainfuckController {
                 args[i] = this.engine.getValAtIndex(i + 2);
             }
             var x = GraphicsAPI.callAPI(opCode, args);
-            canvas.redrawWithConsumer(x);
+            this.drawList.add(x);
         }
         return thingy;
     }
@@ -40,5 +35,17 @@ public class BrainfuckController {
     public void execute() {
         while (step()) {
         }
+    }
+
+    public void draw() {
+        JFrame jframe = new JFrame();
+        Canvas canvas = new Canvas(this.drawList);
+        jframe.setLayout(new BorderLayout());
+        jframe.add("Center", canvas);
+        jframe.setSize(800, 600);
+        jframe.setLocationRelativeTo(null);
+        jframe.setTitle("BrainFuck Draw");
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jframe.setVisible(true);
     }
 }
