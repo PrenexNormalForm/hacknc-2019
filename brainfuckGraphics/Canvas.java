@@ -18,7 +18,7 @@ public class Canvas extends JPanel {
 //	JFrame frame = new JFrame("Rock");
     Consumer<Graphics> toPaint;
 
-    //Constructor 
+    //Constructor
     public Canvas() {
         this.toPaint = g -> {
         };
@@ -40,8 +40,8 @@ public class Canvas extends JPanel {
         this.toPaint.accept(f);
     }
 
-    public void drawRect(int x1, int y1, int x2, int y2) {
-        this.toPaint = g -> g.drawRect(x1, y1, x2 - x1, y2 - y1);
+    public void redrawWithConsumer(Consumer<Graphics> consumer) {
+        this.toPaint = consumer;
         this.repaint();
     }
 
