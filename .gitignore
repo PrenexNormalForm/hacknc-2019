@@ -1,7 +1,7 @@
 
 # Created by https://www.gitignore.io/api/gradle,eclipse,intellij,netbeans
 # Edit at https://www.gitignore.io/?templates=gradle,eclipse,intellij,netbeans
-
+*.class
 ### Eclipse ###
 .metadata
 bin/
