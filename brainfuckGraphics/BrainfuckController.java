@@ -20,17 +20,22 @@ public class BrainfuckController {
         this.jframe.setVisible(true);
     }
     
-    public void step(){
-        this.engine.exec(this.engine.memoryPointer);
-        if (this.engine.programMemory.get(0) != 0){
-            int opCode = Byte.toUnsignedInt(this.engine.programMemory.get(1));
-            var argList = this.engine.programMemory.subList(2, 16);
-            byte[] args =  new byte[argList.size()];
-            for(int i = 0; i < argList.size(); i++){
-                args[i] = argList.get(i);
+    public boolean step(){
+        boolean thingy = this.engine.exec(this.engine.memoryPointer);
+        if (this.engine.getValAtIndex(0) != 0){
+            this.engine.programMemory.set(0, (byte)0);
+            int opCode = Byte.toUnsignedInt(this.engine.getValAtIndex(1));
+            byte[] args =  new byte[14];
+            for(int i = 2; i < args.length; i++){
+                args[i] = this.engine.getValAtIndex(i);
             }
             var x = GraphicsAPI.callAPI(opCode, args);
             canvas.redrawWithConsumer(x);
         }
+        return thingy;
+    }
+
+    public void execute(){
+        while(step()){}
     }
 }

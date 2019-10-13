@@ -44,6 +44,13 @@ public class BrainfuckInterpreter {
         this.programMemory.set(this.memoryPointer, currentVal);
     }
 
+    public byte getValAtIndex(int anIndex){
+        if (anIndex >= this.programMemory.size()){
+            return (byte)0;
+        }
+        return this.programMemory.get(anIndex);
+    }
+    
     public void decrementMemcell() {
         this.programMemory.set(this.memoryPointer, (byte) (this.programMemory.get(this.memoryPointer) - 1));
     }
