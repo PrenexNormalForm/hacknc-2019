@@ -30,7 +30,9 @@ public class Test{
 +"    <.[-]                    Output ROT13ed character from copy and clear it"
 +"    <-,+                     Read next character"
 +"]                            End character reading loop");
-        BrainfuckInterpreter b = new BrainfuckInterpreter( new BrainfuckProgram(fuckyeah));
-        b.execAll();
+        BrainfuckController b = new BrainfuckController( new BrainfuckInterpreter( new BrainfuckProgram(fuckyeah)));
+        while (true){
+            b.step();
+        }
     }
 }
