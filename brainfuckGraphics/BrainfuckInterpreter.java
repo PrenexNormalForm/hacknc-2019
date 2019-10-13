@@ -66,6 +66,14 @@ public class BrainfuckInterpreter {
         }
     }
 
+    public ArrayList<Byte> getMemory(){
+        return this.programMemory;
+    }
+
+    public void setinstructionPointer(int aThing){
+        this.instructionPointer = aThing;
+    }
+
     public void endALoop(){
             this.instructionPointer = this.bfp.getMatchingBracket(this.instructionPointer) - 1;
     }
