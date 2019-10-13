@@ -59,7 +59,17 @@ public class BrainfuckInterpreter {
         programMemory.set(this.memoryPointer, inputBuffer.poll());
     }
 
-    public void exec(Integer instruction) {
+    public void doALoop(){
+        if (programMemory.get(memoryPointer) == 0){
+            this.instructionPointer = this.bfp.getMatchingBracket(this.instructionPointer);
+        }
+    }
+
+    public void endALoop(){
+            this.instructionPointer = this.bfp.getMatchingBracket(this.instructionPointer) - 1;
+    }
+
+    public boolean exec(Integer instruction) {
         switch (this.bfp.getInstruction(instructionPointer)) {
             case SHIFT_RIGHT:
                 increaseMemoryPointer();
@@ -79,10 +89,19 @@ public class BrainfuckInterpreter {
             case INPUT:
                 getUserInput();
                 break;
+            case LOOP_BEGIN:
+                doALoop();
+                break;
+            case LOOP_END:
+                endALoop();
+                break;
         }
+        return instructionPointer < this.bfp.getLength();
     }
 
-    public static void main(String[] args) {
-
+    public void execAll(){
+        while(exec(instructionPointer)){
+            instructionPointer++;
+        }
     }
 }
