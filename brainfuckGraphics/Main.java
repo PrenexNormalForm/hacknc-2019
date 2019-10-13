@@ -1,8 +1,17 @@
 package brainfuckGraphics;
 
-public class Main {
+import java.awt.Color;
+import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
+public class Main extends JPanel{
     public static void main(String[] args) {
-        System.out.println("do stuff");
+        Canvas canvas = new Canvas();
     }
+    protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawRect(200, 200, 200, 200);
+		g.setColor(Color.red);
+	}
 }
