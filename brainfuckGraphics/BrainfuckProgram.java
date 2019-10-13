@@ -10,6 +10,7 @@ import java.util.EmptyStackException;
 import java.util.Map;
 import java.util.Stack;
 import static brainfuckGraphics.BrainfuckInstruction.*;
+import java.util.HashMap;
 
 /**
  *
@@ -21,6 +22,7 @@ public class BrainfuckProgram {
     private Map<Integer, Integer> matchingBrackets;
 
     public BrainfuckProgram(String code) {
+        this.matchingBrackets = new HashMap<>();
         this.compile(code);
         this.matchBrackets();
     }
