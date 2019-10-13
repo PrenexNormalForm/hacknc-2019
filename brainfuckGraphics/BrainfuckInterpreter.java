@@ -63,10 +63,11 @@ public class BrainfuckInterpreter {
         if (programMemory.get(memoryPointer) == 0){
             this.instructionPointer = this.bfp.getMatchingBracket(this.instructionPointer);
         }
+    }
 
-        public void endALoop(){
+    public void endALoop(){
             this.instructionPointer = this.bfp.getMatchingBracket(this.instructionPointer) - 1;
-        }
+    }
 
     public boolean exec(Integer instruction) {
         switch (this.bfp.getInstruction(instructionPointer)) {
@@ -103,3 +104,4 @@ public class BrainfuckInterpreter {
             instructionPointer++;
         }
     }
+}
