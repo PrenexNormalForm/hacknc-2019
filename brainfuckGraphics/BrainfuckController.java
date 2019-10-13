@@ -16,7 +16,8 @@ public class BrainfuckController {
         this.canvas = new Canvas();
         this.jframe.setLayout(new BorderLayout());
         this.jframe.add("Center", this.canvas);
-        this.jframe.setSize(1280, 720);
+        this.jframe.setSize(800, 600);
+        this.jframe.setLocationRelativeTo(null);
         this.jframe.setTitle("BrainFuck Draw");
         this.jframe.setVisible(true);
     }

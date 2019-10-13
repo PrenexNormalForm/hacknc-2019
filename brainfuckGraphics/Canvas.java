@@ -34,6 +34,7 @@ public class Canvas extends JPanel {
     }
 
     public void paint(Graphics f) {
+        f.clearRect(0, 0, this.getWidth(), this.getHeight());
         for (Consumer consumer : this.paintList) {
             consumer.accept(f);
         }

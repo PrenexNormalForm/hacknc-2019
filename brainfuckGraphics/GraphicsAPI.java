@@ -166,7 +166,7 @@ public final class GraphicsAPI {
         int y2 = twoByteWord(args[6], args[7]);
         int x3 = twoByteWord(args[8], args[9]);
         int y3 = twoByteWord(args[10], args[11]);
-        return g -> g.drawPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+        return g -> g.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
     }
 
     /**
