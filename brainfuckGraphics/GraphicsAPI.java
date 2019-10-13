@@ -7,6 +7,7 @@ package brainfuckGraphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 /**
@@ -176,7 +177,7 @@ public final class GraphicsAPI {
      * @return
      */
     private static int twoByteWord(byte high, byte low) {
-        return unsign(high) << 8 + unsign(low);
+        return (unsign(high) << 8) + unsign(low);
     }
 
     /**

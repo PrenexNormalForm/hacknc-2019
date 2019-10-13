@@ -2,6 +2,8 @@ package brainfuckGraphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 //draw primitives
 
@@ -16,12 +18,11 @@ public class Canvas extends JPanel {
     final int x = 100;
     final int y = 100;
 //	JFrame frame = new JFrame("Rock");
-    Consumer<Graphics> toPaint;
+    Queue<Consumer<Graphics>> paintQueue;
 
     //Constructor
     public Canvas() {
-        this.toPaint = g -> {
-        };
+        this.paintQueue = new LinkedList<>();
 //		frame.setSize(width, height);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		frame.setLocationRelativeTo(null);
@@ -32,16 +33,13 @@ public class Canvas extends JPanel {
     }
 
     public void paint(Graphics f) {
-        f.drawString("MyLastProgram", 10, 20);
-        f.drawOval(50, 50, 100, 100);
-        Image base = new ImageIcon("C:\\Users\\Visitor\\Downloads\\base.png").getImage();
-        f.drawImage(base, 100, 100, this);
-        f.drawString("Farewell.", 10, 250);
-        this.toPaint.accept(f);
+        while (!this.paintQueue.isEmpty()) {
+            this.paintQueue.poll().accept(f);
+        }
     }
 
     public void redrawWithConsumer(Consumer<Graphics> consumer) {
-        this.toPaint = consumer;
+        this.paintQueue.add(consumer);
         this.repaint();
     }
 
