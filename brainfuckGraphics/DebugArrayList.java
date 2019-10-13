@@ -10,7 +10,7 @@ import javax.swing.table.*;
 public class DebugArrayList {
 
     public static String[] columnTitles = {"Index#", "Value"};
-    public static ArrayList<Byte> values = new ArrayList();
+    public static ArrayList<Byte> values = new ArrayList<Byte>();
     static DefaultTableModel model = new DefaultTableModel();
     static JTable table = new JTable(model);
     static int AmtOfTimesBtnPressed = 0;
