@@ -29,6 +29,10 @@ public class BrainfuckProgram {
         return instructions[location];
     }
 
+    public int getLength() {
+        return instructions.length;
+    }
+
     public int getMatchingBracket(int location) {
         if (!matchingBrackets.containsKey(location)) {
             throw new IllegalArgumentException("No loop instruction at location " + location);
