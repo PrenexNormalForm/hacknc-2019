@@ -14,6 +14,7 @@ public class BrainfuckInterpreter {
     Scanner kb = new Scanner(System.in);
 
     public BrainfuckInterpreter(BrainfuckProgram bfp) {
+        this.programMemory.add((byte)0);
         this.bfp = bfp;
     }
 
@@ -96,12 +97,11 @@ public class BrainfuckInterpreter {
                 endALoop();
                 break;
         }
+        instructionPointer++;
         return instructionPointer < this.bfp.getLength();
     }
 
     public void execAll(){
-        while(exec(instructionPointer)){
-            instructionPointer++;
-        }
+        while(exec(instructionPointer)){}
     }
 }
